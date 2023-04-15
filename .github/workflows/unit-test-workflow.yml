@@ -1,10 +1,12 @@
 name: Automated Unit Testing
+
 on: 
   pull_request:
   workflow_dispatch:
   push:
     branches:
       - workflow
+      - main
 
 jobs:
   run-unit-tests:
@@ -18,9 +20,9 @@ jobs:
           ref: ${{ github.event.pull_request.head.ref }}
 
       - name: Set up NodeJS
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v2
         with:
-          node-version: 16
+          node-version: '16.x'
 
       - name: Install all dependencies
         run: npm install
